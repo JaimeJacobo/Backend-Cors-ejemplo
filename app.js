@@ -1,6 +1,6 @@
 const express = require('express');
 const chalk = require('chalk');
-
+const PORT = process.env.PORT || 3000
 const app = express();
 app.set('view engine', 'hbs');
 
@@ -43,7 +43,7 @@ app.post('/crear-jugadora', (req, res)=>{
   })
 })
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
   console.log(chalk.green.inverse.bold('Conectado en el puerto 3000'))
 })
 
