@@ -1,21 +1,9 @@
 const express = require('express');
 const chalk = require('chalk');
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 const app = express();
 app.set('view engine', 'hbs');
 
-const allowedOrigins = ['localhost:3000'];
-
-app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-}));
 
 require('dotenv').config();
 
@@ -57,6 +45,6 @@ app.post('/crear-jugadora', (req, res)=>{
 })
 
 app.listen(PORT, ()=>{
-  console.log(chalk.green.inverse.bold('Conectado en el puerto 3000'))
+  console.log(chalk.green.inverse.bold('Conectado en el puerto 5000'))
 })
 
