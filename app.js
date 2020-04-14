@@ -1,9 +1,8 @@
 const express = require('express');
 const chalk = require('chalk');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 const app = express();
 app.set('view engine', 'hbs');
-
 
 require('dotenv').config();
 
@@ -16,6 +15,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
 
 //Ruta GET para ver todas las jugadoras
 app.get('/', (req, res)=>{
@@ -45,6 +52,6 @@ app.post('/crear-jugadora', (req, res)=>{
 })
 
 app.listen(PORT, ()=>{
-  console.log(chalk.green.inverse.bold('Conectado en el puerto 5000'))
+  console.log(chalk.green.inverse.bold('Conectado en el puerto 3000'))
 })
 
